@@ -5,7 +5,7 @@ div.box-container {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  align-items: center;
+  align-content: center;
   justify-content: center;
 }
 div.box {
@@ -24,4 +24,16 @@ div#blue.box {
 }
 div#yellow.box {
   background-color: yellow;
+}
+div.controls-container {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: center;
+}
+button#start {
+  width: 100px;
+}
+h3#score {
+  margin: 0 50px;
 }
