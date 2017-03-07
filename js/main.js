@@ -1,6 +1,8 @@
 'use-strict';
 const GameData = {
   sequence: [],
+  userSequence: [],
+  score: 0,
   extendSequence() {
     this.sequence.push(Math.floor(Math.random() * (4)));
     return this.sequence;
@@ -8,12 +10,28 @@ const GameData = {
   deleteSequence() {
     this.sequence = [];
   },
-
+  getSequence() {
+    return this.sequence;
+  },
+  compareSequence() {
+    if (this.userSequence.length === this.sequence.length) {
+      for (let i = 0; i < this.userSequence.length; i++) {
+        if (this.userSequence[i] !== this.sequence[i]) {
+          return false;
+        }
+      }
+      this.score++;
+      return true;
+    }
+  }
 };
 
 const Controller = {
   onClickStartButton() {
     Presenter.runSequence(GameData.extendSequence());
+  },
+  onClickBoxes() {
+    Presenter.animateSquare($(this));
   }
 }
 
@@ -23,7 +41,7 @@ const Presenter = {
     let timer = 0;
     sequence.forEach(function(element) {
       window.setTimeout(function() {
-        Presenter.animateSquare(Presenter.getBoxByIndex(element));
+        Presenter.animateSquare(Presenter.getSquareByIndex(element));
       }, timer += 1000);
     });
   },
@@ -33,11 +51,12 @@ const Presenter = {
       $square.css('opacity', '1.0');
     }, 666);
   },
-  getBoxByIndex(index) {
+  getSquareByIndex(index) {
     return $(`div.box[data-index=${index}]`);
   }
 }
 
 $(function() {
   $('button#start').on('click', Controller.onClickStartButton);
+  $('div.box-container').on('click', 'div', Controller.onClickBoxes);
 })
