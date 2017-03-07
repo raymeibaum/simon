@@ -14,16 +14,16 @@ div.box {
   margin: 25px;
 }
 div#green.box {
-  background-color: green;
+  background: green;
 }
 div#red.box {
-  background-color: red;
+  background: red;
 }
 div#blue.box {
-  background-color: blue;
+  background: blue;
 }
 div#yellow.box {
-  background-color: yellow;
+  background: yellow;
 }
 div.controls-container {
   display: flex;
