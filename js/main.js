@@ -3,6 +3,7 @@ const GameData = {
   sequence: [],
   userSequence: [],
   score: 0,
+  userTurn: true,
   extendSequence() {
     this.sequence.push(Math.floor(Math.random() * (4)));
     return this.sequence;
@@ -23,6 +24,13 @@ const GameData = {
       this.score++;
       return true;
     }
+  },
+  isUserTurn() {
+    return this.userTurn;
+  },
+  addUserInput(index) {
+    this.userSequence.push(index);
+    return this.userSequence;
   }
 };
 
@@ -31,13 +39,15 @@ const Controller = {
     Presenter.runSequence(GameData.extendSequence());
   },
   onClickBoxes() {
-    Presenter.animateSquare($(this));
-  }
+    if (GameData.isUserTurn()) {
+      Presenter.animateSquare($(this));
+      console.log(GameData.addUserInput(parseInt($(this).attr('data-index'))));
+    }
+  },
 }
 
 const Presenter = {
   runSequence(sequence) {
-    console.log(sequence);
     let timer = 0;
     sequence.forEach(function(element) {
       window.setTimeout(function() {
@@ -49,7 +59,7 @@ const Presenter = {
     $square.css('opacity', '0.4');
     window.setTimeout(function() {
       $square.css('opacity', '1.0');
-    }, 666);
+    }, 500);
   },
   getSquareByIndex(index) {
     return $(`div.box[data-index=${index}]`);
