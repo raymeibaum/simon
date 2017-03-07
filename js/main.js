@@ -3,7 +3,6 @@ const GameData = {
   sequence: [],
   userSequence: [],
   score: 0,
-  userTurn: true,
   extendSequence() {
     this.sequence.push(Math.floor(Math.random() * (4)));
     return this.sequence;
@@ -14,7 +13,10 @@ const GameData = {
   getSequence() {
     return this.sequence;
   },
-  compareSequence() {
+  getScore() {
+    return this.score;
+  },
+  compareSequences() {
     if (this.userSequence.length === this.sequence.length) {
       for (let i = 0; i < this.userSequence.length; i++) {
         if (this.userSequence[i] !== this.sequence[i]) {
@@ -22,15 +24,18 @@ const GameData = {
         }
       }
       this.score++;
+      this.userSequence = [];
       return true;
     }
-  },
-  isUserTurn() {
-    return this.userTurn;
   },
   addUserInput(index) {
     this.userSequence.push(index);
     return this.userSequence;
+  },
+  gameOver() {
+    this.sequence = [];
+    this.userSequence = [];
+    this.score = 0;
   }
 };
 
@@ -39,14 +44,22 @@ const Controller = {
     Presenter.runSequence(GameData.extendSequence());
   },
   onClickBoxes() {
-    if (GameData.isUserTurn()) {
-      Presenter.animateSquare($(this));
-      console.log(GameData.addUserInput(parseInt($(this).attr('data-index'))));
+    Presenter.animateSquare($(this));
+    GameData.addUserInput(parseInt($(this).attr('data-index')));
+    if (GameData.compareSequences() === true) {
+      console.log('Compare sequences: true');
+      Presenter.runSequence(GameData.extendSequence());
+      Presenter.refreshScore(GameData.getScore());
+    } else if (GameData.compareSequences() === false) {
+      console.log('Compare sequences: false');
+      Presenter.clearBoard();
+      GameData.gameOver();
     }
   },
 }
 
 const Presenter = {
+  $score: $('h3#score'),
   runSequence(sequence) {
     let timer = 0;
     sequence.forEach(function(element) {
@@ -63,6 +76,12 @@ const Presenter = {
   },
   getSquareByIndex(index) {
     return $(`div.box[data-index=${index}]`);
+  },
+  refreshScore(score) {
+    this.$score.text(score);
+  },
+  clearBoard() {
+    this.$score.text(0);
   }
 }
 
