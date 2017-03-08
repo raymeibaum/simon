@@ -3,6 +3,13 @@ const Simon = {
   computerSequence: [],
   userSequence: [],
   score: 0,
+  inGame: false,
+  isPlaying() {
+    return this.inGame
+  },
+  newGame() {
+    this.inGame = true;
+  },
   newComputerSequenceElement() {
     this.computerSequence.push(Math.floor(Math.random() * (4)));
     return this.computerSequence;
@@ -51,6 +58,7 @@ const Simon = {
     }
   },
   gameOver() {
+    this.inGame = false;
     this.resetComputerSequence();
     this.resetUserSequence();
     this.resetScore();
@@ -59,7 +67,11 @@ const Simon = {
 
 const Controller = {
   onClickStartButton() {
-    Presenter.runSequence(Simon.newComputerSequenceElement());
+    if (!Simon.isPlaying()) {
+      Simon.newGame();
+      Presenter.runSequence(Simon.newComputerSequenceElement());
+    }
+
   },
   onClickBoxes() {
     Presenter.animateSquare($(this));
