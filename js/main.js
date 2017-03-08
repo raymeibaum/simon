@@ -33,6 +33,10 @@ const Simon = {
     this.score = 0;
   },
   compareSequences() {
+    if (this.computerSequence.length === 0) {
+      this.resetUserSequence();
+      return 'no-game';
+    }
     for (let i = 0; i < this.userSequence.length; i++) {
       if (this.userSequence[i] !== this.computerSequence[i]) {
         return 'incorrect sequence';
@@ -74,6 +78,10 @@ const Controller = {
       case 'additional input required':
         Presenter.playSound(parseInt($(this).attr('data-index')));
         break;
+      case 'no-game':
+        Presenter.playSound(parseInt($(this).attr('data-index')));
+        break;
+
     }
   }
 }
