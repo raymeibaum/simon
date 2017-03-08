@@ -19,7 +19,7 @@ const Simon = {
   },
   getUserSequence() {
     return this.userSequence;
-  }
+  },
   resetUserSequence() {
     this.userSequence = [];
   },
@@ -28,20 +28,22 @@ const Simon = {
   },
   incrementScore() {
     this.score++;
-  }
+  },
   resetScore() {
     this.score = 0;
-  }
+  },
   compareSequences() {
     for (let i = 0; i < this.userSequence.length; i++) {
       if (this.userSequence[i] !== this.computerSequence[i]) {
-        return false;
+        return 'incorrect sequence';
       }
     }
     if (this.userSequence.length === this.computerSequence.length) {
       this.incrementScore();
       this.resetUserSequence();
-      return true;
+      return 'correct sequence';
+    } else {
+      return 'additional input required';
     }
   },
   gameOver() {
@@ -58,13 +60,27 @@ const Controller = {
   onClickBoxes() {
     Presenter.animateSquare($(this));
     Simon.newUserSequenceElement(parseInt($(this).attr('data-index')));
+
+    switch (Simon.compareSequences()) {
+      case 'correct sequence':
+        console.log('correct sequence');
+        Presenter.runSequence(Simon.newComputerSequenceElement());
+        Presenter.refreshScore(Simon.getScore());
+        break;
+      case 'incorrect sequence':
+        console.log('incorrect sequence');
+        Presenter.clearBoard();
+        Simon.gameOver();
+        alert('Game over!');
+        break;
+      case 'additional input required':
+        console.log('additional input required');
+        break;
+    }
     if (Simon.compareSequences() === true) {
-      Presenter.runSequence(Simon.newComputerSequenceElement());
-      Presenter.refreshScore(Simon.getScore());
+
     } else if (Simon.compareSequences() === false) {
-      Presenter.clearBoard();
-      Simon.gameOver();
-      alert('Game over!');
+
     }
   },
 }
