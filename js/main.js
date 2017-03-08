@@ -71,22 +71,17 @@ const Controller = {
         console.log('incorrect sequence');
         Presenter.clearBoard();
         Simon.gameOver();
-        alert('Game over!');
         break;
       case 'additional input required':
         console.log('additional input required');
         break;
     }
-    if (Simon.compareSequences() === true) {
-
-    } else if (Simon.compareSequences() === false) {
-
-    }
-  },
+  }
 }
 
 const Presenter = {
   $score: $('h3#score'),
+  animationQueue: null,
   runSequence(sequence) {
     let timer = 0;
     sequence.forEach(function(element) {
@@ -96,10 +91,13 @@ const Presenter = {
     });
   },
   animateSquare($square) {
-    $square.css('opacity', '0.4');
-    window.setTimeout(function() {
-      $square.css('opacity', '1.0');
-    }, 500);
+    $square.css('opacity', '0');
+    $square.animate({
+      opacity: '1.0',
+    }, {
+      duration: 1000,
+      queue: true,
+    });
   },
   getSquareByIndex(index) {
     return $(`div.box[data-index=${index}]`);

@@ -12,6 +12,7 @@ div.box {
   width: 300px;
   height: 300px;
   margin: 25px;
+  animation: flash-box 1s ease 1;
 }
 div#green.box {
   background: green;
@@ -36,4 +37,13 @@ button#start {
 }
 h3#score {
   margin: 0 50px;
+}
+@keyframes flash-box {
+  0% {
+    opacity: 0;
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 1.0;
+  }
 }
