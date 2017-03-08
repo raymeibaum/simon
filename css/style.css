@@ -12,7 +12,6 @@ div.box {
   width: 300px;
   height: 300px;
   margin: 25px;
-  animation: flash-box 1s ease 1;
 }
 div#green.box {
   background: green;
@@ -38,10 +37,13 @@ button#start {
 h3#score {
   margin: 0 50px;
 }
+.animated {
+  animation: flash-box 0.5s ease 1;
+}
 @keyframes flash-box {
   0% {
     opacity: 0;
-    transform: scale(1.1);
+    transform: scale(1.2);
   }
   100% {
     opacity: 1.0;

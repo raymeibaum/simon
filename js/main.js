@@ -60,20 +60,19 @@ const Controller = {
   onClickBoxes() {
     Presenter.animateSquare($(this));
     Simon.newUserSequenceElement(parseInt($(this).attr('data-index')));
-
     switch (Simon.compareSequences()) {
       case 'correct sequence':
-        console.log('correct sequence');
+        Presenter.playSound(parseInt($(this).attr('data-index')));
         Presenter.runSequence(Simon.newComputerSequenceElement());
         Presenter.refreshScore(Simon.getScore());
         break;
       case 'incorrect sequence':
-        console.log('incorrect sequence');
+        Presenter.playSound();
         Presenter.clearBoard();
         Simon.gameOver();
         break;
       case 'additional input required':
-        console.log('additional input required');
+        Presenter.playSound(parseInt($(this).attr('data-index')));
         break;
     }
   }
@@ -81,22 +80,22 @@ const Controller = {
 
 const Presenter = {
   $score: $('h3#score'),
-  animationQueue: null,
+  $squareContainer: $('div.box-container'),
+  audioCtx: new window.AudioContext(),
   runSequence(sequence) {
     let timer = 0;
     sequence.forEach(function(element) {
       window.setTimeout(function() {
         Presenter.animateSquare(Presenter.getSquareByIndex(element));
-      }, timer += 1000);
+        Presenter.playSound(element);
+      }, timer += 600);
     });
+    this.disableClickEvents(timer);
   },
   animateSquare($square) {
-    $square.css('opacity', '0');
-    $square.animate({
-      opacity: '1.0',
-    }, {
-      duration: 1000,
-      queue: true,
+    $square.addClass('animated');
+    $square.on('animationend', function() {
+      $square.removeClass('animated');
     });
   },
   getSquareByIndex(index) {
@@ -107,6 +106,44 @@ const Presenter = {
   },
   clearBoard() {
     this.$score.text(0);
+  },
+  disableClickEvents(time) {
+    window.setTimeout(function() {
+      Presenter.$squareContainer.css('pointer-events', 'auto');
+    }, time);
+    this.$squareContainer.css('pointer-events', 'none');
+  },
+  playSound(element) {
+    let oscillator = this.audioCtx.createOscillator();
+    let gainNode = this.audioCtx.createGain();
+
+    oscillator.connect(gainNode);
+    gainNode.connect(this.audioCtx.destination);
+
+    gainNode.gain.value = 1;
+
+    oscillator.type = 'triangle';
+
+    switch (element) {
+      case 0:
+        oscillator.frequency.value = 466.16;
+        break;
+      case 1:
+        oscillator.frequency.value = 349.23;
+        break;
+      case 2:
+        oscillator.frequency.value = 233.08;
+        break;
+      case 3:
+        oscillator.frequency.value = 277.18;
+        break;
+      default:
+        oscillator.frequency.value = 40;
+    }
+    oscillator.start();
+    window.setTimeout(function() {
+      oscillator.stop();
+    }, 400);
   }
 }
 
