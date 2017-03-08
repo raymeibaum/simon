@@ -1,59 +1,70 @@
 'use-strict';
-const GameData = {
-  sequence: [],
+const Simon = {
+  computerSequence: [],
   userSequence: [],
   score: 0,
-  extendSequence() {
-    this.sequence.push(Math.floor(Math.random() * (4)));
-    return this.sequence;
+  newComputerSequenceElement() {
+    this.computerSequence.push(Math.floor(Math.random() * (4)));
+    return this.computerSequence;
   },
-  deleteSequence() {
-    this.sequence = [];
+  getComputerSequence() {
+    return this.computerSequence;
   },
-  getSequence() {
-    return this.sequence;
+  resetComputerSequence() {
+    this.computerSequence = [];
+  },
+  newUserSequenceElement(index) {
+    this.userSequence.push(index);
+    return this.userSequence;
+  },
+  getUserSequence() {
+    return this.userSequence;
+  }
+  resetUserSequence() {
+    this.userSequence = [];
   },
   getScore() {
     return this.score;
   },
+  incrementScore() {
+    this.score++;
+  }
+  resetScore() {
+    this.score = 0;
+  }
   compareSequences() {
-    if (this.userSequence.length === this.sequence.length) {
-      for (let i = 0; i < this.userSequence.length; i++) {
-        if (this.userSequence[i] !== this.sequence[i]) {
-          return false;
-        }
+    for (let i = 0; i < this.userSequence.length; i++) {
+      if (this.userSequence[i] !== this.computerSequence[i]) {
+        return false;
       }
-      this.score++;
-      this.userSequence = [];
+    }
+    if (this.userSequence.length === this.computerSequence.length) {
+      this.incrementScore();
+      this.resetUserSequence();
       return true;
     }
   },
-  addUserInput(index) {
-    this.userSequence.push(index);
-    return this.userSequence;
-  },
   gameOver() {
-    this.sequence = [];
-    this.userSequence = [];
-    this.score = 0;
+    this.resetComputerSequence();
+    this.resetUserSequence();
+    this.resetScore();
   }
 };
 
 const Controller = {
   onClickStartButton() {
-    Presenter.runSequence(GameData.extendSequence());
+    Presenter.runSequence(Simon.newComputerSequenceElement());
   },
   onClickBoxes() {
     Presenter.animateSquare($(this));
-    GameData.addUserInput(parseInt($(this).attr('data-index')));
-    if (GameData.compareSequences() === true) {
-      console.log('Compare sequences: true');
-      Presenter.runSequence(GameData.extendSequence());
-      Presenter.refreshScore(GameData.getScore());
-    } else if (GameData.compareSequences() === false) {
-      console.log('Compare sequences: false');
+    Simon.newUserSequenceElement(parseInt($(this).attr('data-index')));
+    if (Simon.compareSequences() === true) {
+      Presenter.runSequence(Simon.newComputerSequenceElement());
+      Presenter.refreshScore(Simon.getScore());
+    } else if (Simon.compareSequences() === false) {
       Presenter.clearBoard();
-      GameData.gameOver();
+      Simon.gameOver();
+      alert('Game over!');
     }
   },
 }
