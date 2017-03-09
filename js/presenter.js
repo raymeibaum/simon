@@ -5,13 +5,14 @@ const Presenter = {
   $squareContainer: $('div.game-container'),
   $highScoresTable: $('tbody#highscores'),
   $postgameModal: $('div#postgame-modal'),
+  $tweetButton: $('a#tweet-button'),
   audioCtx: new window.AudioContext(),
   runSequence(sequence) {
     let timer = 0;
     sequence.forEach(function(element) {
       window.setTimeout(function() {
         Presenter.animateSquare(Presenter.getSquareByIndex(element));
-        Presenter.playSound(element);
+        Presenter.playSound(400, element);
       }, timer += 600);
     });
     this.disableClickEvents(timer);
@@ -28,7 +29,7 @@ const Presenter = {
   refreshScore(score) {
     this.$score.text(score);
   },
-  clearBoard() {
+  clearScore() {
     this.$score.text(0);
   },
   disableClickEvents(time) {
@@ -37,7 +38,7 @@ const Presenter = {
     }, time);
     this.$squareContainer.css('pointer-events', 'none');
   },
-  playSound(element) {
+  playSound(duration, element) {
     let oscillator = this.audioCtx.createOscillator();
     let gainNode = this.audioCtx.createGain();
 
@@ -67,11 +68,13 @@ const Presenter = {
     oscillator.start();
     window.setTimeout(function() {
       oscillator.stop();
-    }, 400);
+    }, duration);
   },
   displayPostgameModal(score) {
-    this.$postgameModal.modal('show');
+    let message = `I just scored ${score} playing #Simon by @raymeibaum. https://raymeibaum.github.io/simon/ #GA #WDI`;
     this.$modalScore.text(score);
+    this.$tweetButton.attr('href', `https://twitter.com/intent/tweet?text=${encodeURIComponent(message)}`)
+    this.$postgameModal.modal('show');
   },
   dismissPostgameModal() {
     this.$postgameModal.modal('hide');

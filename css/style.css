@@ -12,6 +12,9 @@ div.game-container {
   background: black;
   border-radius: 100%;
 }
+div.highscores-container {
+  max-width: 500px;
+}
 div.box {
   position: absolute;
   width: 50%;
