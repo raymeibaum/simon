@@ -61,10 +61,10 @@ span#bar-brand {
 }
 img#start {
   position: absolute;
-  right: 30%;
-  bottom: 36%;
+  right: 25%;
+  bottom: 32%;
   pointer-events: auto;
-  width: 50px;
+  width: 75px;
 }
 h3#score {
   color: white;
