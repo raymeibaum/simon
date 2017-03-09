@@ -7,10 +7,27 @@ form {
 div.game-container {
   margin: 0 auto;
   position: relative;
-  width: 700px;
-  height: 700px;
-  /*background: black;*/
+  width: 100%;
+  height: auto;
+  border-radius: 50%;
+  padding-top: 100%;
+}
+div.game-center {
+  position: absolute;
+  background: black;
+  top: 25%;
+  left: 25%;
+  width: 50%;
+  height: 50%;
   border-radius: 100%;
+  display: flex;
+  flex-direction: column;
+}
+div.center-controls {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
 }
 div.highscores-container {
   margin: 0 auto;
@@ -45,19 +62,10 @@ div#yellow.box {
   border-bottom-right-radius: 100%;
   background: yellow;
 }
-div.game-center {
-  background: black;
-  top: 25%;
-  left: 25%;
-  width: 50%;
-  height: 50%;
-  position: relative;
-  border-radius: 100%;
-}
 h1#logo {
   text-align: center;
   font-size: 5em;
-  padding-top: 50px;
+  padding-top: 12.5%;
   color: white;
   font-family: 'Anton', sans-serif;
 }
@@ -67,17 +75,12 @@ span#bar-brand {
 }
 i#start {
   color: green;
-  position: absolute;
-  right: 31%;
-  bottom: 37%;
   pointer-events: auto;
 }
 h3#score {
   color: white;
   font-size: 5em;
-  position: absolute;
-  left: 25%;
-  bottom: 30%;
+
 }
 .animated {
   animation: flash-box 0.5s ease 1;
