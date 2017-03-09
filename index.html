@@ -13,24 +13,39 @@
 
 <body>
   <nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
-      <a class="navbar-brand" href="#"><span id="bar-brand">SIMON</span> by Ray Meibaum</a>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#" id="clear-highscores">Clear Highscores</a></li>
-      </ul>
-    </div>
-  </nav>
-  <div class="container">
-    <div class="game-container">
-      <div class="box" id="green" data-index="0"></div>
-      <div class="box" id="red" data-index="1"></div>
-      <div class="box" id="blue" data-index="2"></div>
-      <div class="box" id="yellow" data-index="3"></div>
-      <div class="game-center">
-        <h1 id="logo">SIMON</h1>
-        <div class="center-controls">
-          <h3 id="score">0</h3>
-          <i class="fa fa-3x fa-circle" id="start" aria-hidden="true"></i>
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#"><span id="navbar-logo">SIMON</span> by Ray Meibaum</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#" id="clear-highscores">Clear Highscores</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="game-wrapper">
+      <div class="game">
+        <div class="box" id="green" data-index="0"></div>
+        <div class="box" id="red" data-index="1"></div>
+        <div class="box" id="blue" data-index="2"></div>
+        <div class="box" id="yellow" data-index="3"></div>
+        <div class="game-center">
+          <h1 class="logo hidden-xs" id="big-simon-logo">SIMON</h1>
+          <h1 class="logo visible-xs" id="small-simon-logo">SIMON</h1>
+          <div class="center-controls">
+            <h3 class="score hidden-xs" id="big-score">0</h3>
+            <h3 class="score visible-xs" id="small-score">0</h3>
+            <i class="fa fa-3x fa-circle hidden-xs" id="start" aria-hidden="true"></i>
+            <i class="fa fa-2x fa-circle visible-xs" id="start" aria-hidden="true"></i>
+          </div>
         </div>
       </div>
     </div>
@@ -52,7 +67,6 @@
         </tbody>
       </table>
     </div>
-  </div>
   <nav class="navbar navbar-inverse navbar-fixed-bottom">
     <div class="container">
       <p class="navbar-text">©2017 Ray Meibaum. All rights reserved.</p>

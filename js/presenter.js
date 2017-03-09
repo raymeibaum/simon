@@ -1,8 +1,8 @@
 'use-strict';
 const Presenter = {
-  $score: $('h3#score'),
+  $score: $('h3.score'),
   $modalScore: $('h1#modal-score'),
-  $squareContainer: $('div.game-container'),
+  $squareContainer: $('div.game'),
   $highScoresTable: $('tbody#highscores'),
   $postgameModal: $('div#postgame-modal'),
   $tweetButton: $('a#tweet-button'),
