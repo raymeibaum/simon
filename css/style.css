@@ -5,14 +5,15 @@ form {
   margin: 20px;
 }
 div.game-container {
-  position: relative;
   margin: 0 auto;
+  position: relative;
   width: 700px;
   height: 700px;
   background: black;
   border-radius: 100%;
 }
 div.highscores-container {
+  margin: 0 auto;
   max-width: 500px;
 }
 div.box {
@@ -52,7 +53,6 @@ div.game-center {
   height: 50%;
   position: relative;
   border-radius: 100%;
-  pointer-events: none;
 }
 h1#logo {
   text-align: center;
@@ -65,12 +65,12 @@ span#bar-brand {
   color: white;
   font-family: 'Anton', sans-serif;
 }
-img#start {
+i#start {
+  color: green;
   position: absolute;
-  right: 25%;
-  bottom: 32%;
+  right: 31%;
+  bottom: 37%;
   pointer-events: auto;
-  width: 75px;
 }
 h3#score {
   color: white;

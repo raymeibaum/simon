@@ -60,7 +60,7 @@ const Simon = {
     });
   },
   compareSequences() {
-    if (this.computerSequence.length === 0) {
+    if (!this.isPlaying()) {
       this.resetUserSequence();
       return 'no-game';
     }
