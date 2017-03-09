@@ -9,7 +9,7 @@ div.game-container {
   position: relative;
   width: 700px;
   height: 700px;
-  background: black;
+  /*background: black;*/
   border-radius: 100%;
 }
 div.highscores-container {
@@ -85,7 +85,7 @@ h3#score {
 @keyframes flash-box {
   0% {
     opacity: 0;
-    /*transform: scale(1.2);*/
+    /*transform: scale(1.1);*/
   }
   100% {
     opacity: 1.0;

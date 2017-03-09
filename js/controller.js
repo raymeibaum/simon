@@ -12,12 +12,14 @@ const Controller = {
     Simon.newUserSequenceElement(parseInt($(this).attr('data-index')));
     switch (Simon.compareSequences()) {
       case 'correct sequence':
+        window.setTimeout(function() { //delay between user sequence and computer turn
+          Presenter.runSequence(Simon.newComputerSequenceElement());
+        }, 500);
         Presenter.playSound(400, parseInt($(this).attr('data-index')));
-        Presenter.runSequence(Simon.newComputerSequenceElement());
         Presenter.refreshScore(Simon.getScore());
         break;
       case 'incorrect sequence':
-        Presenter.playSound(3000);
+        Presenter.playSound(2000);
         Presenter.displayPostgameModal(Simon.getScore());
         break;
       case 'additional input required':
