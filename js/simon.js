@@ -4,6 +4,7 @@ const Simon = {
   userSequence: [],
   score: 0,
   inGame: false,
+  highscores: [],
   isPlaying() {
     return this.inGame
   },
@@ -39,6 +40,24 @@ const Simon = {
   resetScore() {
     this.score = 0;
   },
+  addHighscore(name, score) {
+    this.highscores.push({
+      name: name,
+      score: score
+    });
+    return this.highscores;
+  },
+  getHighscores() {
+    return this.highscores;
+  },
+  resetHighscores() {
+    this.highscores = [];
+  },
+  sortHighscores() {
+    return this.highscores.sort(function(a, b) {
+      return a.score - b.score;
+    });
+  }
   compareSequences() {
     if (this.computerSequence.length === 0) {
       this.resetUserSequence();
