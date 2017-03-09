@@ -1,3 +1,6 @@
+body {
+  padding: 100px 0;
+}
 div.game-container {
   position: relative;
   margin: 0 auto;
@@ -52,18 +55,23 @@ h1#logo {
   color: white;
   font-family: 'Anton', sans-serif;
 }
+span#bar-brand {
+  color: white;
+  font-family: 'Anton', sans-serif;
+}
 img#start {
   position: absolute;
-  right: 25%;
+  right: 30%;
+  bottom: 36%;
   pointer-events: auto;
   width: 50px;
 }
 h3#score {
   color: white;
-  font-size: 3em;
+  font-size: 5em;
   position: absolute;
   left: 25%;
-  bottom: 9%;
+  bottom: 30%;
 }
 .animated {
   animation: flash-box 0.5s ease 1;
