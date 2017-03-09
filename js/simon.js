@@ -52,6 +52,7 @@ const Simon = {
   },
   resetHighscores() {
     this.highscores = [];
+    return this.highscores;
   },
   sortHighscores() {
     return this.highscores.sort(function(a, b) {

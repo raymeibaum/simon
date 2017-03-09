@@ -35,5 +35,8 @@ const Controller = {
     Simon.addHighscore(event.target[0].value, Simon.getScore());
     Presenter.buildAndDisplayHighscores(Simon.sortHighscores());
     Simon.gameOver();
+  },
+  onClickClearHighscores() {
+    Presenter.buildAndDisplayHighscores(Simon.resetHighscores());
   }
 }
