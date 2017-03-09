@@ -9,6 +9,7 @@ Simon is a game in which the player must test their ability to remember sequence
 ### Technologies
 * jQuery
 * Bootstrap
+* Google Fonts
 * Font Awesome
 
 ### Trello
