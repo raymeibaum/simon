@@ -55,9 +55,9 @@ const Simon = {
   },
   sortHighscores() {
     return this.highscores.sort(function(a, b) {
-      return a.score - b.score;
+      return b.score - a.score;
     });
-  }
+  },
   compareSequences() {
     if (this.computerSequence.length === 0) {
       this.resetUserSequence();

@@ -6,7 +6,6 @@ const Controller = {
       Simon.newGame();
       Presenter.runSequence(Simon.newComputerSequenceElement());
     }
-
   },
   onClickQuadrant() {
     Presenter.animateSquare($(this));
@@ -19,8 +18,8 @@ const Controller = {
         break;
       case 'incorrect sequence':
         Presenter.playSound();
+        Presenter.displayPostgameModal(Simon.getScore());
         Presenter.clearBoard();
-        Simon.gameOver();
         break;
       case 'additional input required':
         Presenter.playSound(parseInt($(this).attr('data-index')));
@@ -29,5 +28,12 @@ const Controller = {
         Presenter.playSound(parseInt($(this).attr('data-index')));
         break;
     }
+  },
+  onFormSubmit() {
+    event.preventDefault();
+    Presenter.dismissPostgameModal();
+    Simon.addHighscore(event.target[0].value, Simon.getScore());
+    Presenter.buildAndDisplayHighscores(Simon.sortHighscores());
+    Simon.gameOver();
   }
 }

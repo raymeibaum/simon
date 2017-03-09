@@ -1,7 +1,10 @@
 'use-strict';
 const Presenter = {
   $score: $('h3#score'),
+  $modalScore: $('h1#modal-score'),
   $squareContainer: $('div.game-container'),
+  $highScoresTable: $('tbody#highscores'),
+  $postgameModal: $('div#postgame-modal'),
   audioCtx: new window.AudioContext(),
   runSequence(sequence) {
     let timer = 0;
@@ -65,5 +68,22 @@ const Presenter = {
     window.setTimeout(function() {
       oscillator.stop();
     }, 400);
+  },
+  displayPostgameModal(score) {
+    this.$postgameModal.modal('show');
+    this.$modalScore.text(score);
+  },
+  dismissPostgameModal() {
+    this.$postgameModal.modal('hide');
+  },
+  buildAndDisplayHighscores(highscores) {
+    this.$highScoresTable.empty();
+    highscores.forEach(function(highscore, index) {
+      let $newScoreRow = $('<tr>');
+      $newScoreRow.append(`<td>${index + 1}</td>`);
+      $newScoreRow.append(`<td>${highscore.name}</td>`);
+      $newScoreRow.append(`<td>${highscore.score}</td>`);
+      Presenter.$highScoresTable.append($newScoreRow);
+    });
   }
 }

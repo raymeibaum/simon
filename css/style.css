@@ -1,6 +1,9 @@
 body {
   padding: 100px 0;
 }
+form {
+  margin: 20px;
+}
 div.game-container {
   position: relative;
   margin: 0 auto;
