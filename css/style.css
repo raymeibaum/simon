@@ -1,41 +1,69 @@
-div.box-container {
+div.game-container {
+  position: relative;
   margin: 0 auto;
   width: 700px;
-  height: 700px ;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-content: center;
-  justify-content: center;
+  height: 700px;
+  background: black;
+  border-radius: 100%;
 }
 div.box {
-  width: 300px;
-  height: 300px;
-  margin: 25px;
+  position: absolute;
+  width: 50%;
+  height: 50%;
 }
 div#green.box {
+  top: 0;
+  left: 0;
+  border-top-left-radius: 100%;
   background: green;
 }
 div#red.box {
+  top: 0;
+  right: 0;
+  border-top-right-radius: 100%;
   background: red;
 }
 div#blue.box {
+  bottom: 0;
+  left: 0;
+  border-bottom-left-radius: 100%;
   background: blue;
 }
 div#yellow.box {
+  bottom: 0;
+  right: 0;
+  border-bottom-right-radius: 100%;
   background: yellow;
 }
-div.controls-container {
-  display: flex;
-  flex-direction: row;
-  align-content: center;
-  justify-content: center;
+div.game-center {
+  background: black;
+  top: 25%;
+  left: 25%;
+  width: 50%;
+  height: 50%;
+  position: relative;
+  border-radius: 100%;
+  pointer-events: none;
 }
-button#start {
-  width: 100px;
+h1#logo {
+  text-align: center;
+  font-size: 5em;
+  padding-top: 50px;
+  color: white;
+  font-family: 'Anton', sans-serif;
+}
+img#start {
+  position: absolute;
+  right: 25%;
+  pointer-events: auto;
+  width: 50px;
 }
 h3#score {
-  margin: 0 50px;
+  color: white;
+  font-size: 3em;
+  position: absolute;
+  left: 25%;
+  bottom: 9%;
 }
 .animated {
   animation: flash-box 0.5s ease 1;
@@ -43,7 +71,7 @@ h3#score {
 @keyframes flash-box {
   0% {
     opacity: 0;
-    transform: scale(1.2);
+    /*transform: scale(1.2);*/
   }
   100% {
     opacity: 1.0;
