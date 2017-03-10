@@ -5,6 +5,9 @@ const Presenter = {
   $squareContainer: $('div.game'),
   $highScoresTable: $('tbody#highscores'),
   $postgameModal: $('div#postgame-modal'),
+  $inputName: $('input#input-name'),
+  $modalSubmit: $('button#modal-submit'),
+  $validationMessage: $('p#validation-message'),
   $tweetButton: $('a#tweet-button'),
   audioCtx: new (window.AudioContext || window.webkitAudioContext)(),
   runSequence(sequence) {
@@ -71,6 +74,7 @@ const Presenter = {
     }, duration);
   },
   displayPostgameModal(score) {
+    this.$inputName.val('');
     let message = `I just scored ${score} playing #Simon by @raymeibaum. https://raymeibaum.github.io/simon/ #GA #WDI`;
     this.$modalScore.text(score);
     this.$tweetButton.attr('href', `https://twitter.com/intent/tweet?text=${encodeURIComponent(message)}`)
@@ -78,6 +82,24 @@ const Presenter = {
       show: true,
       backdrop: 'static'
     });
+  },
+  focusInput() {
+    this.$inputName.focus();
+  },
+  getName() {
+    return this.$inputName.val();
+  },
+  disableSubmitButton() {
+    this.$modalSubmit.prop('disabled', true);
+  },
+  enableSubmitButton() {
+    this.$modalSubmit.prop('disabled', false);
+  },
+  displayValidationSuccess() {
+    this.$validationMessage.html('<strong>Score added to Highscores.</strong>');
+  },
+  clearValidationMessage() {
+    this.$validationMessage.empty();
   },
   dismissPostgameModal() {
     this.$postgameModal.modal('hide');

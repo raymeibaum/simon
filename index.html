@@ -52,7 +52,7 @@
       </div>
     </div>
     <div class="below-game-container">
-      <p><strong>Instructions:</strong> To play <span class="logo" id="instructions-logo">SIMON</span>, simply press the green circle in the middle of the game.</p>
+      <p><strong>Instructions:</strong> To begin playing <span class="logo" id="instructions-logo">SIMON</span>, simply press the green circle in the middle of the game.</p>
       <h3>Highscores</h3>
       <table class="table">
         <thead>
@@ -96,11 +96,12 @@
             <div class="col-sm-8">
               <form class="form-inline">
                 <div class="form-group">
-                  <label class="sr-only" for="inputName">Name</label>
-                  <input type="text" class="form-control" id="inputName" placeholder="Name" required>
+                  <label class="sr-only" for="input-name">Name</label>
+                  <input type="text" class="form-control" id="input-name" placeholder="Name" required>
                 </div>
-                <button type="submit" class="btn btn-primary">Submit Score</button>
+                <button type="submit" id="modal-submit" class="btn btn-primary">Submit Score</button>
               </form>
+              <p class="text-success text-center" id="validation-message"></p>
             </div>
           </div>
         </div>

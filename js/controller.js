@@ -4,7 +4,7 @@ const Controller = {
     event.stopPropagation();
     if (!Simon.isPlaying()) {
       Simon.newGame();
-      Presenter.runSequence(Simon.newComputerSequenceElement());
+      Presenter.runSequence(Simon.newComputerSequenceElement()); // Adds to and immediately runs sequence
     }
   },
   onClickQuadrant() {
@@ -12,7 +12,7 @@ const Controller = {
     Simon.newUserSequenceElement(parseInt($(this).attr('data-index')));
     switch (Simon.compareSequences()) {
       case 'correct sequence':
-        window.setTimeout(function() { //delay between user sequence and computer turn
+        window.setTimeout(function() { // Delay between user sequence and computer turn
           Presenter.runSequence(Simon.newComputerSequenceElement());
         }, 500);
         Presenter.playSound(400, parseInt($(this).attr('data-index')));
@@ -32,15 +32,21 @@ const Controller = {
   },
   onFormSubmit() {
     event.preventDefault();
-    Simon.addHighscore(event.target[0].value, Simon.getScore());
+    Simon.addHighscore(Presenter.getName(), Simon.getScore());
+    Presenter.disableSubmitButton();
+    Presenter.displayValidationSuccess();
     Presenter.buildAndDisplayHighscores(Simon.sortHighscores());
-    Presenter.dismissPostgameModal();
   },
   onClickClearHighscores() {
     Presenter.buildAndDisplayHighscores(Simon.resetHighscores());
   },
   onModalDismiss() {
+    Presenter.enableSubmitButton();
+    Presenter.clearValidationMessage();
     Presenter.clearScore();
     Simon.gameOver();
+  },
+  onModalShown() {
+    Presenter.focusInput();
   }
 }
