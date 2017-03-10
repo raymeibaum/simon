@@ -10,6 +10,7 @@ Simon is a game in which the player must test their ability to remember sequence
 1. CSS animations and native JavaScript sound generation
 2. MVC style application architecture
 3. Twitter Tweet Button API for tweeting high scores
+4. Responsive design
 
 ### Technologies
 * jQuery
