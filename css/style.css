@@ -84,7 +84,7 @@ span#navbar-logo {
   color: white;
   font-family: 'Anton', sans-serif;
 }
-i#start {
+i.start {
   color: green;
   pointer-events: auto;
 }
