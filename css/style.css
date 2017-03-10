@@ -33,9 +33,9 @@ div.center-controls {
   justify-content: space-around;
   align-items: center;
 }
-div.highscores-container {
+div.below-game-container {
   margin: 0 auto;
-  max-width: 500px;
+  max-width: 600px;
 }
 div.box {
   position: absolute;
@@ -66,11 +66,12 @@ div#yellow.box {
   border-bottom-right-radius: 100%;
   background: yellow;
 }
-
+.logo {
+  font-family: 'Anton', sans-serif;
+}
 h1.logo {
   text-align: center;
   color: white;
-  font-family: 'Anton', sans-serif;
   margin-bottom: 0;
 }
 h1.logo#big-simon-logo {
@@ -81,9 +82,8 @@ h1.logo#small-simon-logo {
   font-size: 3em;
   padding-top: 20px;
 }
-span#navbar-logo {
+span.logo#navbar-logo {
   color: white;
-  font-family: 'Anton', sans-serif;
 }
 i.start {
   color: green;
