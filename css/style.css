@@ -38,7 +38,7 @@ div.below-game-container {
   max-width: 600px;
 }
 div.box {
-  border: 15px solid black;
+  border: 20px solid black;
   position: absolute;
   width: 50%;
   height: 50%;
@@ -55,12 +55,16 @@ div#red.box {
   top: 0;
   right: 0;
   border-top-right-radius: 100%;
+  border-bottom-width: 10px;
+  border-left-width: 10px;
   background: red;
 }
 div#blue.box {
   bottom: 0;
   left: 0;
   border-bottom-left-radius: 100%;
+  border-top-width: 10px;
+  border-right-width: 10px;
   background: blue;
 }
 div#yellow.box {
