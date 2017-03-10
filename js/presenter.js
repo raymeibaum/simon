@@ -74,7 +74,10 @@ const Presenter = {
     let message = `I just scored ${score} playing #Simon by @raymeibaum. https://raymeibaum.github.io/simon/ #GA #WDI`;
     this.$modalScore.text(score);
     this.$tweetButton.attr('href', `https://twitter.com/intent/tweet?text=${encodeURIComponent(message)}`)
-    this.$postgameModal.modal('show');
+    this.$postgameModal.modal({
+      show: true,
+      backdrop: 'static'
+    });
   },
   dismissPostgameModal() {
     this.$postgameModal.modal('hide');
