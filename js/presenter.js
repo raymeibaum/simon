@@ -32,10 +32,10 @@ const Presenter = {
   clearScore() {
     this.$score.text(0);
   },
-  disableClickEvents(time) {
+  disableClickEvents(duration) {
     window.setTimeout(function() {
       Presenter.$squareContainer.css('pointer-events', 'auto');
-    }, time);
+    }, duration);
     this.$squareContainer.css('pointer-events', 'none');
   },
   playSound(duration, element) {
