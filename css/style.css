@@ -27,6 +27,7 @@ div.game-center {
   flex-direction: column;
 }
 div.center-controls {
+  margin-top: 20px;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -89,6 +90,7 @@ i.start {
   pointer-events: auto;
 }
 h3.score {
+  margin: 0;
   color: white;
 
 }
@@ -97,6 +99,9 @@ h3.score#big-score {
 }
 h3.score#small-score {
   font-size: 2em;
+}
+a#footer-link {
+  color: inherit;
 }
 .animated {
   animation: flash-box 0.5s ease 1;
