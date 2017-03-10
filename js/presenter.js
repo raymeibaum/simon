@@ -6,7 +6,7 @@ const Presenter = {
   $highScoresTable: $('tbody#highscores'),
   $postgameModal: $('div#postgame-modal'),
   $tweetButton: $('a#tweet-button'),
-  audioCtx: new window.AudioContext(),
+  audioCtx: new (window.AudioContext || window.webkitAudioContext)(),
   runSequence(sequence) {
     let timer = 0;
     sequence.forEach(function(element) {
