@@ -47,6 +47,8 @@ div#green.box {
   top: 0;
   left: 0;
   border-top-left-radius: 100%;
+  border-bottom-width: 10px;
+  border-right-width: 10px;
   background: green;
 }
 div#red.box {
@@ -65,6 +67,8 @@ div#yellow.box {
   bottom: 0;
   right: 0;
   border-bottom-right-radius: 100%;
+  border-top-width: 10px;
+  border-left-width: 10px;
   background: yellow;
 }
 .logo {
