@@ -76,11 +76,11 @@ h1.logo {
 }
 h1.logo#big-simon-logo {
   font-size: 5em;
-  padding-top: 50px;
+  margin-top: 50px;
 }
 h1.logo#small-simon-logo {
   font-size: 3em;
-  padding-top: 20px;
+  margin-top: 20px;
 }
 span.logo#navbar-logo {
   color: white;
